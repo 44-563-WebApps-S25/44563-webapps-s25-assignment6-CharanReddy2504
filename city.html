@@ -5,10 +5,7 @@
     </head>
  
 <body>
-    <div>
-        <img id="petImage" src="images/cheetah.jpg" width="150" height="150" onclick="updatePic()" alt="Pet Image">
-      </div>      
-      
+
 <h2>City game by [Charan Reddy Chilipireddy]</h2>
 
 <form id="cityForm">
@@ -46,30 +43,41 @@
         document.getElementById("result").innerHTML = `Found: ${found} | Oops: ${oops}`;
     }
 </script>
+<!-- Guess form or other content at the top -->
+<form>
+    <!-- your form elements here -->
+  </form>
+  
+  <!-- Other content can go here -->
+  <p>Some additional content above the image.</p>
+  
+  <!-- Now the image container is placed below the above content -->
+  <div>
+    <img id="petImage" src="images/cheetah.jpg" width="150" height="150" onclick="updatePic()" alt="Pet Image">
+  </div>
 
-<script>
-    let usePic = 1;  // Global variable to track which image is being shown
-    
+  <script>
+    let usePic = 1;
     function updatePic() {
       const img = document.getElementById("petImage");
       switch (usePic) {
         case 1:
-          img.src = "images/impala.jpg";  // Change to impala image
+          img.src = "images/impala.jpg";
           usePic = 2;
           break;
         case 2:
-          img.src = "images/labrador.jpg";  // Change to labrador image
+          img.src = "images/labrador.jpg";
           usePic = 3;
           break;
         case 3:
-          img.src = "images/cheetah.jpg";  // Back to cheetah image
+          img.src = "images/cheetah.jpg";
           usePic = 1;
           break;
         default:
-          usePic = 1; // Reset if needed
+          usePic = 1;
       }
     }
   </script>
-  
+
 </body>
 </html> 
