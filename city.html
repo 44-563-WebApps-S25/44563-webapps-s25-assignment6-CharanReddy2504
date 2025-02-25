@@ -5,7 +5,10 @@
     </head>
  
 <body>
-
+    <div>
+        <img id="petImage" src="images/pet1.jpg" width="150" height="150" onclick="updatePic()" alt="Pet Image">
+      </div>
+      
 <h2>City game by [Charan Reddy Chilipireddy]</h2>
 
 <form id="cityForm">
@@ -43,5 +46,30 @@
         document.getElementById("result").innerHTML = `Found: ${found} | Oops: ${oops}`;
     }
 </script>
+
+<script>
+    let usePic = 1;  // Global variable to track which image is being shown
+    
+    function updatePic() {
+      const img = document.getElementById("petImage");
+      switch (usePic) {
+        case 1:
+          img.src = "images/impala.jpg";  // Change to impala image
+          usePic = 2;
+          break;
+        case 2:
+          img.src = "images/labrador.jpg";  // Change to labrador image
+          usePic = 3;
+          break;
+        case 3:
+          img.src = "images/cheetah.jpg";  // Back to cheetah image
+          usePic = 1;
+          break;
+        default:
+          usePic = 1; // Reset if needed
+      }
+    }
+  </script>
+  
 </body>
 </html> 
