@@ -1,90 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Charan Reddy Chilipireddy plans dinner</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    .section {
-      margin-bottom: 30px;
-    }
-    #dinnerResults {
-      margin-top: 20px;
-      border: 1px solid #ccc;
-      padding: 10px;
-    }
-  </style>
+     <title>Charan Reddy Chilipireddy Plans Dinner</title>
 </head>
 <body>
-  <h1>Charan Reddy Chilipireddy plans dinner</h1>
-  
-  <!-- Part 7: Checkboxes for dinner choices -->
-  <div class="section" id="checkboxSection">
-    <form id="dinnerForm">
-      <input type="checkbox" id="wineCheckbox" value="True">
-      <label for="wineCheckbox">Serve wine</label><br>
-      
-      <input type="checkbox" id="outsideCheckbox" value="True">
-      <label for="outsideCheckbox">Eat outside</label><br>
-      
-      <input type="checkbox" id="candelCheckbox" value="False">
-      <label for="candelCheckbox">Light candles</label><br><br>
-      
-      <button type="button" onclick="choices()">Dinner Choices</button>
+    <h1>Charan Reddy Chilipireddy Plans Dinner</h1>
+    
+    <form>
+        <input type="checkbox" id="serve_wine" value="True"> Serve Wine<br>
+        <input type="checkbox" id="eat_outside" value="True"> Eat Outside<br>
+        <input type="checkbox" id="light_candles" value="False"> Light Candles<br>
     </form>
-    <!-- Element to display dinner choices -->
-    <div id="dinnerResults"></div>
-  </div>
-  
-  <hr>
-  
-  <!-- Part 8: Form to update dinner with main dish and dessert -->
-  <div class="section" id="updateDinnerSection">
-    <form id="updateDinnerForm">
-      <label for="mainDish">Enter main dish:</label>
-      <input type="text" id="mainDish" value="Butter Chicken"><br><br>
-      
-      <label for="dessert">Enter dessert:</label>
-      <input type="text" id="dessert"><br><br>
-      
-      <button type="button" onclick="updateDinner()">Update the dinner</button>
+    
+    <button onclick="choices()">Dinner Choices</button>
+    <p id="dinner_results"></p>
+    
+    <form>
+        <label for="main_dish">Enter main dish:</label>
+        <input type="text" id="main_dish" value="Butter Chicken"><br>
+        
+        <label for="dessert">Enter dessert:</label>
+        <input type="text" id="dessert"><br>
     </form>
-  </div>
-  
-  <script>
-    // Global variable to hold dinner choices
-    let my_dinner = {};
+    
+    <button onclick="updateDinner()">Update the Dinner</button>
+    <p id="updated_dinner"></p>
+    
+    <script>
+        let my_dinner = {};
 
-    // Part 7: Function to capture choices from checkboxes
-    function choices() {
-      // Reset my_dinner to an empty object
-      my_dinner = {};
+        function choices() {
+            my_dinner = {};
+            my_dinner.wine = document.getElementById("serve_wine").checked;
+            my_dinner.outside = document.getElementById("eat_outside").checked;
+            my_dinner.candel = document.getElementById("light_candles").checked;
+            document.getElementById("dinner_results").innerHTML = JSON.stringify(my_dinner);
+        }
 
-      // Set properties based on whether each checkbox is checked
-      my_dinner.wine = document.getElementById("wineCheckbox").checked;
-      my_dinner.outside = document.getElementById("outsideCheckbox").checked;
-      my_dinner.candel = document.getElementById("candelCheckbox").checked;
-
-      // Display the dinner choices in the designated element (using JSON.stringify for clarity)
-      document.getElementById("dinnerResults").innerHTML = "Dinner choices: " + JSON.stringify(my_dinner);
-    }
-
-    // Part 8: Function to update dinner object with main dish and dessert values
-    function updateDinner() {
-      // Retrieve values from text inputs
-      const mainDishValue = document.getElementById("mainDish").value;
-      const dessertValue = document.getElementById("dessert").value;
-
-      // Update the my_dinner object with main dish and dessert properties
-      my_dinner.main = mainDishValue;
-      my_dinner.dessert = dessertValue;
-
-      // Update the results display
-      document.getElementById("dinnerResults").innerHTML = "Updated dinner: " + JSON.stringify(my_dinner);
-    }
-  </script>
+        function updateDinner() {
+            my_dinner.main = document.getElementById("main_dish").value;
+            my_dinner.dessert = document.getElementById("dessert").value;
+            document.getElementById("updated_dinner").innerHTML = JSON.stringify(my_dinner);
+        }
+    </script>
 </body>
 </html>
