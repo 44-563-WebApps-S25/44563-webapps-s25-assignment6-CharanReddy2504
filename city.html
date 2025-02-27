@@ -70,50 +70,87 @@
     }
     
     </style>
-
-<body class="container text-center mt-5">
-  <h1 class="mb-4">City Game by Charan Reddy Chilipireddy</h1>
-  <form>
-      <div class="mb-3">
-          <label for="secretCity" class="form-label">Where in the world:</label>
-          <input type="password" id="secretCity" value="San Diego" class="form-control">
+    
+    <body class="container text-center mt-5">
+      <h1 class="mb-4">City Game by Chaithanya Reddy Pailla</h1>
+      <form>
+          <div class="mb-3">
+              <label for="secretCity" class="form-label">Where in the world:</label>
+              <input type="password" id="secretCity" value="San Diego" class="form-control">
+          </div>
+          <div class="mb-3">
+              <label for="guessCity" class="form-label">Guess the city:</label>
+              <input type="text" id="guessCity" class="form-control">
+          </div>
+          <button type="button" id="guessBtn" class="btn btn-primary" onclick="checkCity()">Check the Guess</button>
+      </form>
+      <div class="mt-3 p-3 border rounded bg-light">
+          <p class="text-success">Correct Guesses: <span id="found">0</span></p>
+          <p class="text-danger">Wrong Guesses: <span id="oops">0</span></p>
       </div>
-      <div class="mb-3">
-          <label for="guessCity" class="form-label">Guess the city:</label>
-          <input type="text" id="guessCity" class="form-control">
-      </div>
-      <button type="button" id="guessBtn" class="btn btn-primary" onclick="checkCity()">Check the Guess</button>
+      
+      <script>
+          let found = 0;
+          let oops = 0;
+      
+          function checkCity() {
+              let secretCity = document.getElementById('secretCity').value;
+              let guessCity = document.getElementById('guessCity').value;
+      
+              if (guessCity.toLowerCase() === secretCity.toLowerCase()) {
+                  found++;
+                  alert("GotCha!");
+              } else {
+                  oops++;
+                  alert("Awe");
+              }
+      
+              document.getElementById('found').textContent = found;
+              document.getElementById('oops').textContent = oops;
+      
+              if (oops > found * 2) {
+                  document.getElementById('guessBtn').onclick = function() {
+                      alert("Sorry, too many wrong guesses.");
+                  };
+                  document.getElementById('guessBtn').classList.add("btn-danger");
+              }
+          }
+      </script>
+<!-- Guess form or other content at the top -->
+<form>
+    <!-- your form elements here -->
   </form>
-  <div class="mt-3 p-3 border rounded bg-light">
-      <p class="text-success">Correct Guesses: <span id="found">0</span></p>
-      <p class="text-danger">Wrong Guesses: <span id="oops">0</span></p>
+  
+  <!-- Other content can go here -->
+  <p>Some additional content above the image.</p>
+  
+  <!-- Now the image container is placed below the above content -->
+  <div>
+    <img id="petImage" src="images/cheetah.jpg" width="150" height="150" onclick="updatePic()" alt="Pet Image">
   </div>
-  
+
   <script>
-      let found = 0;
-      let oops = 0;
-  
-      function checkCity() {
-          let secretCity = document.getElementById('secretCity').value;
-          let guessCity = document.getElementById('guessCity').value;
-  
-          if (guessCity.toLowerCase() === secretCity.toLowerCase()) {
-              found++;
-              alert("GotCha!");
-          } else {
-              oops++;
-              alert("Awe");
-          }
-  
-          document.getElementById('found').textContent = found;
-          document.getElementById('oops').textContent = oops;
-  
-          if (oops > found * 2) {
-              document.getElementById('guessBtn').onclick = function() {
-                  alert("Sorry, too many wrong guesses.");
-              };
-              document.getElementById('guessBtn').classList.add("btn-danger");
-          }
+    let usePic = 1;
+    function updatePic() {
+      const img = document.getElementById("petImage");
+      switch (usePic) {
+        case 1:
+          img.src = "images/impala.jpg";
+          usePic = 2;
+          break;
+        case 2:
+          img.src = "images/labrador.jpg";
+          usePic = 3;
+          break;
+        case 3:
+          img.src = "images/cheetah.jpg";
+          usePic = 1;
+          break;
+        default:
+          usePic = 1;
       }
+    }
   </script>
+
+</body>
 </html> 
