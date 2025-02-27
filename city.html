@@ -3,81 +3,117 @@
     <head>
         <title>City game by [Charan Reddy Chilipireddy]</title>
     </head>
- 
-<body>
+    <style>
 
-<h2>City game by [Charan Reddy Chilipireddy]</h2>
-
-<form id="cityForm">
-    <label for="secretCity">Where in the world: </label>
-    <input type="password" id="secretCity" value="San Diego" disabled>
-    <br>
-    <label for="guessCity">Guess the city: </label>
-    <input type="text" id="guessCity">
-    <br>
-    <button type="button" onclick="checkCity()">Check the guess</button>
-</form>
-
-
-<div id="result"></div>
-
-<script>
-    let oops = 0;
-    let found = 0;
-
-    function checkCity() {
-        // Get values from the input elements
-        const secretCity = document.getElementById("secretCity").value;
-        const guessCity = document.getElementById("guessCity").value;
-
-        // Compare the values
-        if (secretCity === guessCity) {
-            found++;
-            alert("GotCha");
-        } else {
-            oops++;
-            alert("Awe");
-        }
-
-        // Update the result display
-        document.getElementById("result").innerHTML = `Found: ${found} | Oops: ${oops}`;
+      /* Style the image */
+    #petImage {
+        width: 150px;
+        height: 150px;
+        object-fit: cover; /* Ensures the image maintains aspect ratio */
+        border-radius: 10px; /* Adds rounded corners */
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        transition: transform 0.3s ease-in-out;
     }
-</script>
-<!-- Guess form or other content at the top -->
-<form>
-    <!-- your form elements here -->
+    
+    #petImage:hover {
+        transform: scale(1.05); /* Slight zoom on hover */
+    }
+    
+    /* Background styling */
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    /* Style buttons */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    
+    .btn-danger:hover {
+        background-color: #a71d2a;
+    }
+    
+    /* Border styling */
+    .border {
+        border-width: 2px 1px; /* Thinner left & right borders */
+        border-style: solid;
+        border-color: #dee2e6 !important;
+        border-radius: 8px; /* Soft rounded edges */
+        padding: 10px;
+        margin: 10px auto;
+        max-width: 300px;
+        background-color: #ffffff; /* Subtle contrast */
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05); /* Light shadow */
+    }
+    
+    </style>
+
+<body class="container text-center mt-5">
+  <h1 class="mb-4">City Game by Chaithanya Reddy Pailla</h1>
+  <form>
+      <div class="mb-3">
+          <label for="secretCity" class="form-label">Where in the world:</label>
+          <input type="password" id="secretCity" value="San Diego" class="form-control">
+      </div>
+      <div class="mb-3">
+          <label for="guessCity" class="form-label">Guess the city:</label>
+          <input type="text" id="guessCity" class="form-control">
+      </div>
+      <button type="button" id="guessBtn" class="btn btn-primary" onclick="checkCity()">Check the Guess</button>
   </form>
-  
-  <!-- Other content can go here -->
-  <p>Some additional content above the image.</p>
-  
-  <!-- Now the image container is placed below the above content -->
-  <div>
-    <img id="petImage" src="images/cheetah.jpg" width="150" height="150" onclick="updatePic()" alt="Pet Image">
+  <div class="mt-3 p-3 border rounded bg-light">
+      <p class="text-success">Correct Guesses: <span id="found">0</span></p>
+      <p class="text-danger">Wrong Guesses: <span id="oops">0</span></p>
   </div>
-
+  
   <script>
-    let usePic = 1;
-    function updatePic() {
-      const img = document.getElementById("petImage");
-      switch (usePic) {
-        case 1:
-          img.src = "images/impala.jpg";
-          usePic = 2;
-          break;
-        case 2:
-          img.src = "images/labrador.jpg";
-          usePic = 3;
-          break;
-        case 3:
-          img.src = "images/cheetah.jpg";
-          usePic = 1;
-          break;
-        default:
-          usePic = 1;
+      let found = 0;
+      let oops = 0;
+  
+      function checkCity() {
+          let secretCity = document.getElementById('secretCity').value;
+          let guessCity = document.getElementById('guessCity').value;
+  
+          if (guessCity.toLowerCase() === secretCity.toLowerCase()) {
+              found++;
+              alert("GotCha!");
+          } else {
+              oops++;
+              alert("Awe");
+          }
+  
+          document.getElementById('found').textContent = found;
+          document.getElementById('oops').textContent = oops;
+  
+          if (oops > found * 2) {
+              document.getElementById('guessBtn').onclick = function() {
+                  alert("Sorry, too many wrong guesses.");
+              };
+              document.getElementById('guessBtn').classList.add("btn-danger");
+          }
       }
-    }
   </script>
-
-</body>
 </html> 
