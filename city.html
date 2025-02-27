@@ -127,7 +127,7 @@
   <!-- Now the image container is placed below the above content -->
   <h2>Click the image to change it</h2>
   <div id="image-container">
-      <img id="petImage" src="pet1.jpg" onclick="updatePic()" alt="Pet Image">
+      <img id="petImage" src="impala.jpg" onclick="updatePic()" alt="Pet Image">
   </div>
 
   <script>
@@ -136,11 +136,11 @@
       const img = document.getElementById("petImage");
       switch (usePic) {
         case 1:
-          img.src = "images/impala.jpg";
+          img.src = "impala.jpg";
           usePic = 2;
           break;
         case 2:
-          img.src = "images/labrador.jpg";
+          img.src = "labrador.jpg";
           usePic = 3;
           break;
         case 3:
